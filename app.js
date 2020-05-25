@@ -8,7 +8,8 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index')
+  const message = 'message'
+  res.render('index', { message })
 })
 app.post('/', (req, res) => {
   res.render('result')

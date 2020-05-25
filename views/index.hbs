@@ -1,0 +1,8 @@
+<form action="/" method="POST" class="d-flex flex-column align-items-center mt-5">
+  <input type="text" placeholder="請輸入要縮短的網址">
+
+  <button type="submit" class="cut-btn">送出</button>
+  {{#if message}}
+  <span class="message"><i class="fas fa-exclamation-circle mr-1"></i>請輸入網址</span>
+  {{/if}}
+</form>

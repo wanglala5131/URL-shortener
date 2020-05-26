@@ -9,5 +9,4 @@ function randomNumber() {
   return number
 }
 
-console.log(randomNumber())
 module.exports = randomNumber

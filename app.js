@@ -17,24 +17,30 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 app.post('/', (req, res) => {
-  const url = req.body.url.toLowerCase()
+  const url = req.body.url
   if (url.includes('http://') || url.includes('https://')) {
-    Url.find()
-      .lean()
-      .then(existUrl => {
-        for (let i = 0; i < existUrl.length; i++) {  //check資料庫中是否有資料
-          if (existUrl[i].originalUrl === url) {
-            return res.render('result', { shortUrl: existUrl[i].shortUrl })
+    if (url.includes('http://localhost:3000/') || url.includes('https://localhost:3000/')) {
+      const message = '請勿輸入此網頁或已被縮短的網頁'
+      res.render('index', { message, url })
+    } else {
+      Url.find()
+        .lean()
+        .then(existUrl => {
+          for (let i = 0; i < existUrl.length; i++) {  //check資料庫中是否有資料
+            if (existUrl[i].originalUrl === url) {
+              return res.render('result', { shortUrl: existUrl[i].shortUrl })
+            }
           }
-        }
-        let shortUrl = randomNumber()
-        Url.create({
-          originalUrl: url,
-          shortUrl: shortUrl
+          let shortUrl = randomNumber()
+          Url.create({
+            originalUrl: url,
+            shortUrl: shortUrl
+          })
+          return res.render('result', { shortUrl })
         })
-        return res.render('result', { shortUrl })
-      })
-      .catch(err => console.log(err))
+        .catch(err => console.log(err))
+    }
+
   } else {
     const message = '請輸入有效網址'
     res.render('index', { message, url })

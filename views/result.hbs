@@ -1,8 +1,22 @@
 <div class="success mt-5 d-flex flex-column align-items-center">
   <h5>使用成功！請使用以下連結</h5>
   <a class="d-block" href="http://localhost:3000/{{shortUrl}}">http://localhost:3000/{{shortUrl}}</a>
-
-  <button class="copy-btn">複製連結</button>
-  <a class="mt-4 go-back" href="/">返回前頁</a>
+  <div class="copy-box">
+    <input type="hidden" id="copyInput" value="http://localhost:3000/{{shortUrl}}">
+    <button class="copy-btn" onclick='copy()'>複製</button>
+    <p class="text-center check-icon"><i class="fas fa-check mr-1"></i>已複製連結</p>
+  </div>
+  <a class="mt-4" href="/">返回前頁</a>
+  <script>
+    function copy() {
+      const copyInput = document.getElementById('copyInput')
+      const checkIcon = document.querySelector('.check-icon')
+      checkIcon.setAttribute('style', 'display:block');  //讓提示出來
+      copyInput.setAttribute('type', 'text')             //讓隱藏的input出來才能複製
+      copyInput.select()                                 //選擇input
+      document.execCommand('copy')                       //複製
+      copyInput.setAttribute('type', 'hidden')           //再把input隱藏
+    }
+  </script>
 
 </div>

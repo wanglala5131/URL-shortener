@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "originalUrl": "https://www.google.com/",
+      "shortUrl": "AAAAA"
+    },
+    {
+      "originalUrl": "https://www.facebook.com/",
+      "shortUrl": "BBBBB"
+    }
+  ]
+}

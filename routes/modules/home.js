@@ -3,8 +3,8 @@ const router = express.Router()
 
 const Url = require('../../models/url')
 const randomNumber = require('../../randomNumber')
-const PORT = 3000
-const INDEX_URL = `http://localhost:${PORT}/`
+const PORT = process.env.PORT || 3000
+const INDEX_URL = 'https://hidden-caverns-24251.herokuapp.com/' || `http://localhost:${PORT}/`
 
 router.get('/', (req, res) => {
   res.render('index')

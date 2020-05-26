@@ -1,8 +1,8 @@
 <div class="success mt-5 d-flex flex-column align-items-center">
   <h5>使用成功！請使用以下連結</h5>
-  <a class="d-block" href="http://localhost:3000/{{shortUrl}}">http://localhost:3000/{{shortUrl}}</a>
+  <a class="d-block" href="{{INDEX_URL}}{{shortUrl}}">{{INDEX_URL}}{{shortUrl}}</a>
   <div class="copy-box">
-    <input type="hidden" id="copyInput" value="http://localhost:3000/{{shortUrl}}">
+    <input type="hidden" id="copyInput" value="{{INDEX_URL}}{{shortUrl}}">
     <button class="copy-btn" onclick='copy()'>複製</button>
     <p class="text-center check-icon"><i class="fas fa-check mr-1"></i>已複製連結</p>
   </div>

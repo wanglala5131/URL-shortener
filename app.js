@@ -34,15 +34,26 @@ app.post('/', (req, res) => {
         })
         return res.render('result', { shortUrl })
       })
-
       .catch(err => console.log(err))
-
-
   } else {
     const message = '請輸入有效網址'
     res.render('index', { message, url })
   }
+})
 
+app.get('/:currentUrl', (req, res) => {
+  const { currentUrl } = req.params
+  Url.find()
+    .lean()
+    .then(existUrl => {
+      for (let i = 0; i < existUrl.length; i++) {  //check資料庫中是否有資料
+        if (existUrl[i].shortUrl === currentUrl) {
+          return res.redirect(existUrl[i].originalUrl)
+        }
+      }
+      return res.render('error')
+    })
+    .catch(err => console.log(err))
 })
 
 app.listen(PORT, () => {
